@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Counter } from '../features/counter/Counter';
-import { withProvider } from '../../.storybook/decorators'
-import { createStore } from '../app/store';
+import { withProvider, WithRedux } from '../../.storybook/decorators'
 import { incrementByAmount } from '../features/counter/counterSlice';
 import { useDispatch } from 'react-redux';
 
@@ -11,9 +10,15 @@ export default {
 };
 
 // This seems like the cleanest option
-export const CounterSeededByStore = () => withProvider(createStore({ preloadedState: { counter: { value: 10 }}}))(<Counter />);
+export const CounterSeededByStore = () => <Counter />;
 CounterSeededByStore.story = {
   name: 'Seeded by createStore',
+  decorators: [WithRedux],
+  parameters: {
+    preloadedState: { 
+      counter: { value: 37 }
+    }
+  }
 };
 
 const CounterWithUseEffect = () => {
