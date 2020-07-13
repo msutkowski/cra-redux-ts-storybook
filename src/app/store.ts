@@ -7,7 +7,7 @@ import {
 import counterReducer from "../features/counter/counterSlice";
 
 // Export a store creator helper for usage by the stories
-export const createStore = (options?: ConfigureStoreOptions) =>
+export const createStore = (options?: Partial<ConfigureStoreOptions>) =>
   configureStore({ reducer: { counter: counterReducer }, ...options });
 
 export const store = createStore();
